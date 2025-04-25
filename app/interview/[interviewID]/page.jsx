@@ -1,20 +1,18 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { db } from "@/db/db";
-import { interviewDetailsTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+
 import { AlertCircle, Stars, Video } from "lucide-react";
 import { redirect, useParams } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
-import Vapi from "@vapi-ai/web";
 import { interviewcontext } from "@/context/InterviewDataContet";
 
 function Page() {
   const { interviewID } = useParams();
 
   const [username, setUsername] = useState("");
-  const { interviewinfo, fetchdata } = useContext(interviewcontext);
+  const { interviewinfo, fetchdata, setName, name } =
+    useContext(interviewcontext);
 
   useEffect(() => {
     fetchdata(interviewID);
@@ -30,8 +28,8 @@ function Page() {
         {console.log(interviewinfo)}
         <h2 className=" font-bold ">Enter you Full name</h2>
         <Input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           placeholder="enter your name"
           className="border-1  border-primary"
         />
@@ -50,7 +48,7 @@ function Page() {
         </div>
         <Button
           onClick={() => redirect("/interview/" + interviewID + "/start")}
-          disabled={username.length < 3}
+          disabled={name.length < 3}
           className="flex w-full items-center"
         >
           <Video />

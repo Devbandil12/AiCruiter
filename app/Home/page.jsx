@@ -7,7 +7,7 @@ import Feature from "./_component/Feature";
 
 function page() {
   return (
-    <div className=" w-full">
+    <div className=" overflow-hidden w-full">
       <div className=" grid grid-cols-1 md:grid-cols-2  p-5">
         <div className=" block md:hidden">
           <div className="flex items-center justify-center p-10 pt-5">

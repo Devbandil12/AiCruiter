@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, MenuSquare, ScanLine, Stars } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Profile from "./profile";
 
 function Header() {
   const [scroll, setScroll] = useState(false);
@@ -14,7 +15,7 @@ function Header() {
 
   console.log(user);
   return (
-    <div className="  rounded-4xl  p-2 flex items-center justify-between md:justify-center md:p-5 pr-8 gap-[5rem]  md:pt-2  font-semibold   ">
+    <div className=" mt-1 rounded-4xl  p-2 flex items-center justify-between md:justify-center md:p-5 pr-8 gap-[5rem]  md:pt-2  font-semibold   ">
       <div className="  flex items-center justify-baseline rounded-3xl p-2">
         <Stars className=" text-[#9333EA]" />
         <h2 className=" text-2xl font-bold text-[#9333EA]">Aicruiter</h2>

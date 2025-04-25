@@ -15,7 +15,8 @@ import Timer from "./_component/Timer";
 function InterviewPage() {
   const { user } = useUser();
   const [isRunning, setIsRunning] = useState(false);
-  const { interviewinfo } = useContext(interviewcontext);
+  const { interviewinfo, name, setFeedback, feedback } =
+    useContext(interviewcontext);
   const vapiRef = useRef(null);
   const [activeUser, setActiveUser] = useState("null");
   const [convo, setConvo] = useState();
@@ -58,7 +59,7 @@ function InterviewPage() {
   };
 
   const generateFeedback = async (text) => {
-    console.log(text);
+    // console.log(text);
     if (!text) return;
     try {
       const res = await axios.post("/api/ai-feedback", {
@@ -68,6 +69,9 @@ function InterviewPage() {
       });
       console.log("Feedback:", res?.data || res);
       const finalmessage = res?.data.replace("```json", " ").replace("```", "");
+      console.log({ feedback: feedback });
+      setFeedback(finalmessage);
+      console.log({ feedback: feedback });
       setInDB(finalmessage);
     } catch (error) {
       console.error("Feedback error:", error);
@@ -83,7 +87,7 @@ function InterviewPage() {
 
     const assistantOptions = {
       name: "AI Recruiter",
-      firstMessage: `Hi ${user.fullName}, how are you? Ready for your interview on ${interviewinfo.jobRole}?`,
+      firstMessage: `Hi ${name || "user"}, how are you? Ready for your interview on ${interviewinfo.jobRole}?`,
       transcriber: {
         provider: "deepgram",
         model: "nova-2",
