@@ -26,7 +26,7 @@ function Provider({children}) {
   },[user])
   return (
 
-    <div>
+    <div >
 
 
       <Header/>

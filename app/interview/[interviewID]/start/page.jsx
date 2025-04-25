@@ -2,7 +2,7 @@
 import { interviewcontext } from "@/context/InterviewDataContet";
 import { useUser } from "@clerk/nextjs";
 import Vapi from "@vapi-ai/web";
-import { Mic, PhoneCall, Timer } from "lucide-react";
+import { Clock, Mic, PhoneCall } from "lucide-react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AlertConfirm from "./_component/AlertConfirm";
 import { toast } from "sonner";
@@ -10,9 +10,11 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import { db } from "@/db/db";
 import { feedbacktable } from "@/db/schema";
+import Timer from "./_component/Timer";
 
 function InterviewPage() {
   const { user } = useUser();
+  const [isRunning, setIsRunning] = useState(false);
   const { interviewinfo } = useContext(interviewcontext);
   const vapiRef = useRef(null);
   const [activeUser, setActiveUser] = useState("null");
@@ -74,6 +76,7 @@ function InterviewPage() {
 
   const startCall = () => {
     if (!interviewinfo || !vapiRef.current || !user) return;
+    setIsRunning(true);
 
     let questions;
     interviewinfo.questionlist.map((q) => (questions += q.question + ","));
@@ -124,23 +127,29 @@ Wrap up after 5-7 questions with a summary and motivation.
 
     // 1.5 seconds should be enough to catch the final message
   };
+  console.log(interviewinfo);
 
   return (
-    <div className="h-screen px-20 py-10">
+    <div className=" h-screen md:px-20 py-10">
       {/* Timer */}
-      <div className="mb-3 flex items-center justify-center">
+      <div className="mb-3 flex items-center flex-col justify-center">
+        <Timer
+          limit={interviewinfo?.jobduration}
+          setIsRunning={setIsRunning}
+          isRunning={isRunning}
+        />
         <h2
           onClick={startCall}
           className="cursor-pointer hover:scale-105 rounded-2xl p-1 bg-gradient-to-br from-primary via-indigo-500 to-slate-800 text-white font-semibold flex items-center"
         >
-          <Timer /> 00:00:00
+          <Clock /> Start
         </h2>
       </div>
 
       {/* Call UI Blocks */}
-      <div className="flex items-center justify-center gap-5">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-5">
         {/* AI */}
-        <div className="w-1/2 h-[20rem] rounded-3xl shadow-lg border-2 border-primary bg-gray-50 flex items-center justify-center">
+        <div className=" w-[25rem] md:w-1/2 h-[20rem] rounded-3xl shadow-lg border-2 border-primary bg-gray-50 flex items-center justify-center">
           <div>
             <div className="relative w-16 h-16 rounded-full border-2">
               {activeUser === "false" && (
@@ -157,7 +166,7 @@ Wrap up after 5-7 questions with a summary and motivation.
         </div>
 
         {/* User */}
-        <div className="w-1/2 h-[20rem] rounded-3xl shadow-lg border-2 border-primary bg-gray-50 flex items-center justify-center">
+        <div className="w-[25rem] md:w-1/2 h-[20rem] rounded-3xl shadow-lg border-2 border-primary bg-gray-50 flex items-center justify-center">
           <div>
             <div className="relative flex items-center justify-center text-xl font-bold w-16 h-16 rounded-full border-2 bg-primary text-white">
               {activeUser === "true" && (

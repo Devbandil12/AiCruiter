@@ -14,7 +14,7 @@ function Header() {
 
   console.log(user);
   return (
-    <div className=" bg-white rounded-4xl  p-2 flex items-center justify-between md:justify-center md:p-5 pr-8 gap-[5rem]  md:mt-2  font-semibold   ">
+    <div className="  rounded-4xl  p-2 flex items-center justify-between md:justify-center md:p-5 pr-8 gap-[5rem]  md:pt-2  font-semibold   ">
       <div className="  flex items-center justify-baseline rounded-3xl p-2">
         <Stars className=" text-[#9333EA]" />
         <h2 className=" text-2xl font-bold text-[#9333EA]">Aicruiter</h2>
@@ -23,16 +23,17 @@ function Header() {
         <div className="    flex items-center justify-center gap-10  ">
           <div
             onClick={(e) => router.push("/" + e.target.innerText)}
-            className=" flex items-center justify-center gap-3 bg-gray-100 rounded-3xl p-1"
+            className=" flex items-center justify-center gap-3 bg-gray-100  rounded-3xl p-1"
           >
             {["Home", "Dashboard", "Resume", "Billing", "How it works"].map(
               (val, ind) => {
                 return (
                   <h3
-                    className={` hover:text-[#9333EA] hover:bg-white transition-all cursor-pointer
+                    className={` hover:text-[#9333EA]  hover:bg-white transition-all cursor-pointer
                         p-1.5 px-3 rounded-3xl ${
-                          path.startsWith("/" + val) &&
-                          " bg-white text-[#9333EA] "
+                          path.startsWith("/" + val)
+                            ? " text-primary bg-white "
+                            : "text-black"
                         }`}
                     key={ind}
                   >

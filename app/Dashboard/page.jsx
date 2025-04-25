@@ -7,7 +7,7 @@ import axios from "axios";
 import { Plus } from "lucide-react";
 import LoadingThreeDotsJumping from "../loading";
 import Link from "next/link";
-import Welcome from "./_components/welome";
+import Welcome from "./_components/Welcome";
 function Page() {
   const [interviewlist, setInterviewlist] = useState([]);
 

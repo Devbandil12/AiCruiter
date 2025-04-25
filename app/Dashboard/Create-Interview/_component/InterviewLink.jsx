@@ -28,7 +28,7 @@ const InfoPill = ({ icon: Icon, children }) => (
 
 function InterviewLink({ interviewid = "12312jhjh", formdata, questions }) {
   // const shortId = interviewid.substring(0, 8);
-  const interviewURL = `${process.env.NEXT_PUBLIC_DOMAIN}/interview/${interviewid}`;
+  const interviewURL = `${process.env.NEXT_PUBLIC_DOMAIN || "http://localhost:3000/"}interview/${interviewid}`;
   const jobDuration = formdata?.jobduration || "20 min";
   const questionCount = questions?.length || 0;
   const copylink = async () => {
