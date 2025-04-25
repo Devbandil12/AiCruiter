@@ -5,7 +5,7 @@ import "../globals.css";
 import Feature from "./_component/Feature";
 import MindSetProgram from "./_component/MindSetProgram";
 
-function page() {
+function Page() {
   return (
     <div className=" w-full">
       <div className=" grid grid-cols-1 md:grid-cols-2  p-5">
@@ -76,4 +76,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -10,9 +10,7 @@ import axios from "axios";
 import { db } from "@/db/db";
 import { interviewDetailsTable } from "@/db/schema";
 import { useUser } from "@clerk/nextjs";
-import { redirect } from "next/dist/server/api-utils";
-import GeneratedQuestionList from "./_component/GeneratedQuestionList";
-import interviewlink from "./_component/InterviewLink";
+
 import Interviewlink from "./_component/InterviewLink";
 
 function CreateInterview() {

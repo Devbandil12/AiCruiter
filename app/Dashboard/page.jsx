@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Welcome from "./_components/welome";
+import Welcome from "./_components/Welome";
 import InterviewsList from "./Create-Interview/_component/InterviewsList";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
