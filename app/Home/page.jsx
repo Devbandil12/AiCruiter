@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Plus, Star, Stars } from "lucide-react";
 import React from "react";
 import "../globals.css";
-import Feature from "./_component/Feature";
 import MindSetProgram from "./_component/MindSetProgram";
+import Feature from "./_component/Feature";
 
 function page() {
   return (

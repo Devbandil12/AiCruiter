@@ -1,6 +1,6 @@
 import { Featurelist } from "@/constant/constant";
 import React from "react";
-import FeatureCard from "./FeatureCard";
+import FeatureCard from "./featureCard";
 
 function Feature() {
   const features = Featurelist;
