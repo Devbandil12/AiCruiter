@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Vapi from "@vapi-ai/web";
 import { interviewcontext } from "@/context/InterviewDataContet";
 
-function page({ params }) {
+function Page() {
   const { interviewID } = useParams();
 
   const [username, setUsername] = useState("");
@@ -61,4 +61,4 @@ function page({ params }) {
   );
 }
 
-export default page;
+export default Page;

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import React, { useEffect } from "react";
 
-function page() {
+function Page() {
   const { user } = useUser();
   const handlesendreport = async () => {
     try {
@@ -60,4 +60,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

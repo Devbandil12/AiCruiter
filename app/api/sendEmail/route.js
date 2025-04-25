@@ -8,7 +8,7 @@ export async function POST(req){
 
     
             const data = await resend.emails.send({
-              from: process.env.NEXT_PUBLIC_EMAIL, // use a verified domain or their demo
+              from:"devband", // use a verified domain or their demo
               to: email,
               subject: `New message from ${name}`,
               html: `<p><strong>Email:</strong> ${email}</p><p>${"hii"}</p>`,

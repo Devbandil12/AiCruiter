@@ -7,7 +7,7 @@ import axios from "axios";
 import { Plus } from "lucide-react";
 import LoadingThreeDotsJumping from "../loading";
 import Link from "next/link";
-function page() {
+function Page() {
   const [interviewlist, setInterviewlist] = useState([]);
 
   const { user } = useUser();
@@ -48,4 +48,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

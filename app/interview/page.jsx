@@ -1,6 +1,6 @@
 import React from "react";
 
-function page() {
+function Page() {
   return (
     <div className=" p-10 flex items-center justify-center">
       <div>
@@ -11,4 +11,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
