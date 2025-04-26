@@ -21,7 +21,7 @@ function ResumeInput({ data, setStep }) {
     const formData = new FormData();
     formData.append("file", file);
     setLoading(true);
-    const res = await fetch("/api/resume", {
+    const res = await fetch(process.env.NEXT_PUBLIC_PDF_URL + "getdata", {
       method: "POST",
       body: formData,
     });
