@@ -26,12 +26,9 @@ export async function POST(req) {
         },
       ],
     });
+    const final_data = res.candidates[0].content.parts[0].text;
 
-    return NextResponse.json(
-      res.candidates[0].content.parts[0].text
-        .replace("```json", " ")
-        .replace("```", " ")
-    );
+    return NextResponse.json(final_data);
   } catch (error) {
     return NextResponse.json(error);
   }

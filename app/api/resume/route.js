@@ -5,8 +5,9 @@ export async function POST(req) {
   const file = data.get('file');
 
   if (!file) return Response.json({ error: 'No file uploaded' }, { status: 400 });
-
-  const buffer = Buffer.from(await file.arrayBuffer());
+  
+  const some=await file.arrayBuffer()
+  const buffer = Buffer.from(some);
 
   try {
     const result = await pdf(buffer); // Extract text

@@ -47,19 +47,16 @@ function CreateInterview() {
       setLoading(true);
 
       const res = await axios.post("/api/GenerateQuestion", { ...formdata });
-      let final;
-      try {
-        final = JSON.parse(res.data);
-      } catch (error) {
-        setError("something went wrong please try again....");
-        toast("something went wrong please try again....");
-      }
 
-      console.log(final.interviewquestion);
-      setQuestions(final.interviewquestion);
+      const final = res.data.replace("```json", " ").replace("```", " ");
+      const Final_data = await JSON.parse(final);
+
+      setQuestions(Final_data.interviewquestion);
 
       setLoading(false);
     } catch (error) {
+      setError("something went wrong please try again....");
+      toast("something went wrong please try again....");
       setLoading(false);
       console.log(error);
     }
