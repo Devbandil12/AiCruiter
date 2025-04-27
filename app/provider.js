@@ -6,6 +6,7 @@ import { db } from '@/db/db'
 import { usersTable } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import { useUser } from '@clerk/nextjs'
+import { Interviewdataprovider } from '@/context/InterviewDataContet'
 
 function Provider({children}) {
   
@@ -30,8 +31,11 @@ function Provider({children}) {
 
 
       <Header/>
+      <Interviewdataprovider>
+
       
       {children}
+      </Interviewdataprovider>
   
       </div>
   )

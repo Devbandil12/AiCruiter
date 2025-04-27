@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { Upload } from "lucide-react";
+import { Check, Upload } from "lucide-react";
 import React, { useState } from "react";
 import LoadingThreeDotsJumping from "../../loading";
 import axios from "axios";
@@ -61,8 +61,6 @@ function ResumeInput({ data, setStep }) {
 
   return (
     <div className=" p-5">
-      {loading && <LoadingThreeDotsJumping className="absolute" />}
-
       <div className="  flex items-center  justify-center flex-col  ">
         <div className=" hidden md:block absolute right-10">
           {
@@ -93,23 +91,39 @@ function ResumeInput({ data, setStep }) {
           className=" border-primary text-zinc-800"
           placeholder=" frontend developer/ HR/ Data Analyst"
         />
-        <div className=" mt-5 w-full  md:w-auto hover:shadow-md border-dashed border-2 border-gray-400 rounded-2xl p-3 flex-col md:flex-row flex items-center justify-center relative gap-2">
-          <span className=" w-10 h-10   bg-[#dec0f9] p-2 flex items-center justify-center rounded-full">
-            {" "}
-            <Upload className=" text-primary" size={30} />
-          </span>
-          <span className=" text-center">
-            <h2 className=" text-xl font-semibold">Upload resume</h2>
-            <p>Select resume to be analyzed</p>
-          </span>
-          <Input
-            disabled={blockinputs}
-            id="resume"
-            type="file"
-            accept=".pdf,.doc,.docx"
-            className=" absolute h-full w-full cursor-pointer opacity-0"
-            onChange={handleUpload}
-          />
+        <div className=" flex items-center justify-center w-full">
+          <div className=" mt-5 w-full p-10  md:w-auto hover:shadow-md border-dashed border-2 border-primary rounded-2xl flex-col flex items-center justify-center relative gap-2">
+            {loading ? (
+              <LoadingThreeDotsJumping className="absolute" />
+            ) : (
+              <span
+                className={` w-10 h-10   ${resumeText?.length > 0 ? "bg-green-500 text-white" : "bg-[#dec0f9]"} p-2 flex items-center justify-center rounded-full`}
+              >
+                {" "}
+                {resumeText?.length > 0 ? (
+                  <Check />
+                ) : (
+                  <Upload className=" text-primary" size={30} />
+                )}
+              </span>
+            )}
+            <span className=" text-center">
+              <h2 className=" text-xl font-semibold">
+                {resumeText?.length > 0 ? "Resume uploaded" : "Upload resume"}
+              </h2>
+              <p>Select resume to be analyzed</p>
+            </span>
+            {!loading && (
+              <Input
+                disabled={blockinputs || loading || resumeText?.length > 0}
+                id="resume"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                className={`${resumeText?.length > 0 && "hidden"} absolute h-full w-full cursor-pointer opacity-0`}
+                onChange={handleUpload}
+              />
+            )}
+          </div>
         </div>
         <div className=" block md:hidden  ">
           {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import InterviewsList from "./Create-Interview/_component/InterviewsList";
 import { useUser } from "@clerk/nextjs";
@@ -8,10 +8,11 @@ import { Plus, StarsIcon } from "lucide-react";
 import LoadingThreeDotsJumping from "../loading";
 import Link from "next/link";
 import Welcome from "./_components/Welcome";
+import { interviewcontext } from "@/context/InterviewDataContet";
 function Page() {
-  const [interviewlist, setInterviewlist] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const { interviews, SetInterviews } = useContext(interviewcontext);
   const { user } = useUser();
 
   const getinterviews = async () => {
@@ -19,7 +20,7 @@ function Page() {
     const res = await axios.get(
       "/api/interviews?email=" + user?.primaryEmailAddress.emailAddress
     );
-    setInterviewlist(res.data);
+    SetInterviews(res.data);
     setLoading(false);
   };
 
@@ -45,7 +46,7 @@ function Page() {
             <LoadingThreeDotsJumping />
           </div>
         )}
-        {interviewlist.length == 0 ? (
+        {interviews?.length == 0 ? (
           <div className=" pt-10 border-dashed flex items-center justify-center">
             <StarsIcon />
             <h2>
@@ -53,7 +54,7 @@ function Page() {
             </h2>
           </div>
         ) : (
-          <InterviewsList interview={interviewlist} />
+          <InterviewsList interview={interviews} />
         )}
       </div>
     </div>

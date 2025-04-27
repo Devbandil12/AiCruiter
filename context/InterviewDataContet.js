@@ -11,6 +11,7 @@ export const interviewcontext=createContext()
 
 export function Interviewdataprovider({children}) {
     const [interviewinfo,setInterviewinfo]=useState();
+    const [interviews,SetInterviews]=useState([])
     const [name,setName]=useState("");
     const [feedback,setFeedback]=useState()
 
@@ -30,7 +31,7 @@ export function Interviewdataprovider({children}) {
    
    
   return (
-<interviewcontext.Provider value={{interviewinfo,fetchdata,setName,name,feedback,setFeedback}}>
+<interviewcontext.Provider value={{interviewinfo,fetchdata,setName,name,feedback,setFeedback,interviews,SetInterviews}}>
 
   
 {children}

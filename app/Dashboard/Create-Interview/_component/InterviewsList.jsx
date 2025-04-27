@@ -1,15 +1,20 @@
 import { Button } from "@/components/ui/button";
+import { interviewcontext } from "@/context/InterviewDataContet";
 import { db } from "@/db/db";
 import { interviewDetailsTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 import { Check, Copy, Delete, Loader2, Send } from "lucide-react";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "sonner";
 
 function InterviewsList({ interview }) {
   const [loading, setLoading] = useState(false);
+  const { SetInterviews } = useContext(interviewcontext);
+
+  console.log(interview);
+
   const copylink = async (id) => {
     await navigator.clipboard.writeText(
       process.env.NEXT_PUBLIC_DOMAIN + "interview/" + id
@@ -23,6 +28,7 @@ function InterviewsList({ interview }) {
       .delete(interviewDetailsTable)
       .where(eq(interviewDetailsTable.id, id));
     setLoading(false);
+    SetInterviews((pre) => pre.filter((val) => val.id != id));
   };
 
   return (
