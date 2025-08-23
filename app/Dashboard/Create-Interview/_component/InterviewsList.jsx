@@ -120,11 +120,6 @@ function InterviewCard({ interviewData, SetInterviews }) {
   const deleteInterview = async (id) => {
     setLoading(true);
     try {
-      // --- MOCKED DATABASE CALL ---
-      // In a real app, this is where you'd call your database.
-      // await db.delete(interviewDetailsTable).where(eq(interviewDetailsTable.id, id));
-
-      // We simulate the delay of a database call.
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       toast.success("Interview deleted successfully.");
