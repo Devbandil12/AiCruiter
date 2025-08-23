@@ -44,7 +44,7 @@ function HowItWorksPage() {
     {
       icon: <FileText className="h-8 w-8 text-purple-600" />,
       title: "Step 1: The Blueprint",
-      description: "You provide the job role and your resume. Our AI instantly analyzes the position's key requirements and cross-references them with your skills, creating a hyper-realistic interview simulation tailored just for you."
+      description: "You provide the job role and your resume. Our AI instantly analyzes the position key requirements and cross-references them with your skills, creating a hyper-realistic interview simulation tailored just for you."
     },
     {
       icon: <BotMessageSquare className="h-8 w-8 text-purple-600" />,
@@ -59,7 +59,7 @@ function HowItWorksPage() {
     {
       icon: <Award className="h-8 w-8 text-purple-600" />,
       title: "Step 4: The Ascent",
-      description: "It's not a one-time event; it's a journey. Repeat the process, track your progress over time, and watch your confidence soar. Turn weaknesses into strengths and walk into your real interview ready to win.",
+      description: "It is not a one-time event; it is a journey. Repeat the process, track your progress over time, and watch your confidence soar. Turn weaknesses into strengths and walk into your real interview ready to win.",
       isLast: true
     }
   ];
@@ -78,7 +78,7 @@ function HowItWorksPage() {
             Your Journey to <span className="bg-gradient-to-r from-purple-600 to-indigo-500 bg-clip-text text-transparent">Mastery</span>
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
-            We've engineered a simple, powerful path to transform you from a nervous candidate into a confident professional. Here’s how.
+            We have engineered a simple, powerful path to transform you from a nervous candidate into a confident professional. Here’s how.
           </p>
         </motion.div>
 

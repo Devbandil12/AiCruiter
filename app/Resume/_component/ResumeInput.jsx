@@ -155,7 +155,7 @@ function ResumeInput({ data, setStep }) {
             AI-Powered Resume Analysis
           </h1>
           <p className="text-gray-500 mt-2">
-            Get instant feedback to land your dream job. Let's get started.
+            Get instant feedback to land your dream job. Let hime cook.
           </p>
         </div>
 

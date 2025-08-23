@@ -111,7 +111,7 @@ function FunnyBillingPage() {
               Your Invoice is Ready
             </h1>
             <p className="text-gray-500 mt-2">
-              Time to settle the score. Don't worry, we don't take cash.
+              Time to settle the score. Dont worry, we dont take cash.
             </p>
 
             <div className="my-8 p-6 bg-purple-50 rounded-xl border border-purple-200">
