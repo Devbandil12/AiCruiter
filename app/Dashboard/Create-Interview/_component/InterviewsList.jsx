@@ -74,7 +74,7 @@ function InterviewsList({ interview, SetInterviews }) {
         No Interviews Created Yet
       </h3>
       <p className="text-gray-500 mt-1">
-        Click the "Create Interview" button to get started.
+        Click the Create Interview button to get started.
       </p>
     </div>
   );
