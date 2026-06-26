@@ -1,109 +1,78 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { BrainCircuit, FileSearch, MessageSquareText, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-export default function FitnessProgram() {
+const steps = [
+  {
+    step: "01",
+    icon: <MessageSquareText className="w-7 h-7 text-purple-600" />,
+    iconBg: "bg-purple-100 dark:bg-purple-900/30",
+    title: "Create Your Interview",
+    description:
+      "Pick your job role, experience level, and interview type. AiCruiter instantly tailors questions just for you.",
+  },
+  {
+    step: "02",
+    icon: <BrainCircuit className="w-7 h-7 text-indigo-600" />,
+    iconBg: "bg-indigo-100 dark:bg-indigo-900/30",
+    title: "Practice with AI",
+    description:
+      "Engage in a realistic voice-based interview powered by AI. Answer naturally — just like a real interview.",
+  },
+  {
+    step: "03",
+    icon: <FileSearch className="w-7 h-7 text-blue-600" />,
+    iconBg: "bg-blue-100 dark:bg-blue-900/30",
+    title: "Get Detailed Feedback",
+    description:
+      "Receive a full performance breakdown — technical skills, communication, problem-solving, and an overall score.",
+  },
+];
+
+export default function HowItWorks() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <div
-      ref={sectionRef}
-      className="bg-white px-2 py-8 md:flex md:items-center md:justify-between md:px-10"
-    >
-      {/* Left Side: Images */}
-      <motion.div
-        className="md:w-1/2 space-y-4"
-        initial={{ opacity: 0, x: -50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
-        <div className=" rounded-xl overflow-hidden">
-          <img
-            src="/grid5.jpg"
-            alt="Weightlifting"
-            className="w-full h-[17rem] hover:scale-105 transition-all object-cover"
-          />
-        </div>
-        <div className="flex gap-4">
-          <div className="flex-1 rounded-xl overflow-hidden">
-            <img
-              src="/grid3.jpg"
-              alt="Fitness Couple"
-              className="w-full h-[15rem] hover:scale-105 transition-all object-bottom rounded-2xl object-cover"
-            />
-          </div>
-          <div className="flex-1 rounded-xl overflow-hidden">
-            <img
-              src="/grid4.jpg"
-              alt="Trainers"
-              className="w-full h-[15rem] hover:scale-105 transition-all  rounded-2xl object-cover"
-            />
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="flex -space-x-2">
-            <img
-              className="w-8 h-8 rounded-full border-2 border-white"
-              src="/grid1.jpg"
-              alt=""
-            />
-            <img
-              className="w-8 h-8 rounded-full border-2 border-white"
-              src="/grid2.jpg"
-              alt=""
-            />
-            <img
-              className="w-8 h-8 rounded-full border-2 border-white"
-              src="/grid3.jpg"
-              alt=""
-            />
-          </div>
-          <p className="text-sm font-medium text-gray-700">
-            Join <span className="font-bold">2,500+</span> members
-          </p>
-        </div>
-      </motion.div>
+    <div ref={sectionRef} className="py-12 px-5 md:px-16 bg-white dark:bg-transparent">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {steps.map((step, i) => (
+          <motion.div
+            key={step.step}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
+            className="relative flex flex-col items-start p-5 sm:p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-white/10 bg-gradient-to-br from-white to-purple-50 dark:from-gray-800 dark:to-gray-900 shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <span className="text-7xl font-black text-purple-100 absolute top-3 right-5 select-none leading-none">
+              {step.step}
+            </span>
+            <div className={`mb-4 p-3 rounded-2xl ${step.iconBg}`}>
+              {step.icon}
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{step.title}</h3>
+            <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{step.description}</p>
+          </motion.div>
+        ))}
+      </div>
 
-      {/* Right Side: Content */}
       <motion.div
-        className="md:w-1/2 mt-10 md:-mt-10 md:pl-12"
-        initial={{ opacity: 0, x: 50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.55, duration: 0.6 }}
+        className="flex justify-center mt-12"
       >
-        <h1 className="text-4xl md:text-5xl font-bold text-black mb-4 leading-tight">
-          Transform your Mind with our Ai Powered Features
-        </h1>
-        <p className="text-gray-700 mb-6">
-          Join our community and achieve your position with personalized roadmap
-          and expert daily routine.
-        </p>
-        <ul className="space-y-4 mb-8">
-          {[
-            "Practice Realtime Interviews",
-            "Create personalised Roadmap",
-            "improve Your resume",
-          ].map((text, i) => (
-            <li key={i} className="flex items-center text-lg text-gray-800">
-              <svg
-                className="w-6 h-6 text-indigo-500 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.586l7.293-7.293a1 1 0 011.414 0z" />
-              </svg>
-              {text}
-            </li>
-          ))}
-        </ul>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold text-lg shadow-md transition-all duration-300"
-        >
-          Join now →
-        </motion.button>
+        <Link href="/Dashboard/Create-Interview">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-500 text-white px-8 py-3.5 rounded-2xl font-semibold text-base shadow-lg shadow-purple-200 dark:shadow-purple-900/40 transition-all cursor-pointer"
+          >
+            Start Your Interview <ArrowRight className="w-4 h-4" />
+          </motion.button>
+        </Link>
       </motion.div>
     </div>
   );

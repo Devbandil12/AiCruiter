@@ -10,15 +10,11 @@ export async function POST(req) {
 
     try {
         const res=await resume_ai.models.generateContent({
-            config: {
-                responseMimeType: "text/plain",
-              },
-        
-              model: "gemini-2.0-flash-thinking-exp-01-21",
+              model: "gemini-2.5-flash",
               contents: [
                 {
                   role: "user",
-                  text: Final_prompt,
+                  parts: [{ text: Final_prompt }],
                 },
               ],
 

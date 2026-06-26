@@ -23,9 +23,16 @@ import { ClerkProvider } from "@clerk/nextjs";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-     
+      <head>
+        {/* Prevent flash of wrong theme on first load */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('aicruiter-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(t===null&&d)){document.documentElement.classList.add('dark')}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
-      
+
         >
           
 

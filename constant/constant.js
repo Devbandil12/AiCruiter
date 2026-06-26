@@ -107,15 +107,17 @@ export const Featurelist=[
     {
         name:"Realtime Interview",
         image:"/i1.jpg",
+        description:"Practice live AI-driven mock interviews tailored to your job role and experience level.",
         button:"create",
         icon1:<CreativeCommonsIcon/>,
         icon2:<FeatherIcon/>,
         path:"/Dashboard/Create-Interview"
-        
+
     },
     {
         name:" Analyze Resume",
         image:"/resume.webp",
+        description:"Get an ATS score and actionable suggestions to make your resume stand out to recruiters.",
         button:"Check",
         icon1:<Code2Icon/>,
         icon2:<Eye/>,
@@ -124,6 +126,7 @@ export const Featurelist=[
     {
         name:"Daily Routine",
         image:"/studyplan.jpg",
+        description:"Build a personalized study plan and daily routine to stay on track for your career goals.",
         button:"View",
         icon1:<LucideFocus/>,
         icon2:<Brain/>,

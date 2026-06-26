@@ -1,6 +1,6 @@
 "use client";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Check, Loader2 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import FormContainer from "./_component/FormContainer";
@@ -12,6 +12,12 @@ import { interviewDetailsTable } from "@/db/schema";
 import { useUser } from "@clerk/nextjs";
 
 import Interviewlink from "./_component/InterviewLink";
+
+const STEPS = [
+  { num: 1, label: "Details" },
+  { num: 2, label: "Review Questions" },
+  { num: 3, label: "Share Link" },
+];
 
 function CreateInterview() {
   const [formdata, setFormdata] = useState();
@@ -26,8 +32,8 @@ function CreateInterview() {
 
   const handleformdata = (field, value) => {
     setFormdata((pre) => ({ ...pre, [field]: value }));
-    // console.log(formdata);
   };
+
   const GoToNext = () => {
     if (
       !formdata.inertviewtype ||
@@ -35,24 +41,20 @@ function CreateInterview() {
       !formdata.jobdescription ||
       !formdata.jobduration
     ) {
-      console.log("somethign went wron");
       toast.error("Fill al the info");
       return;
     }
     Generatequestions();
     setStep((pre) => pre + 1);
   };
+
   const Generatequestions = async () => {
     try {
       setLoading(true);
-
       const res = await axios.post("/api/GenerateQuestion", { ...formdata });
-
       const final = res.data.replace("```json", " ").replace("```", " ");
       const Final_data = await JSON.parse(final);
-
       setQuestions(Final_data.interviewquestion);
-
       setLoading(false);
     } catch (error) {
       setError("something went wrong please try again....");
@@ -75,7 +77,6 @@ function CreateInterview() {
         .returning({ interviewID: interviewDetailsTable.id });
       setSaveLoading(false);
       toast.success("interview created successfully");
-
       setInterviewID(res[0].interviewID);
       setStep((pre) => pre + 1);
     } catch (error) {
@@ -84,33 +85,66 @@ function CreateInterview() {
       console.log(error);
     }
   };
+
   return (
-    <div className=" md:px-30">
+    <div className="px-4 sm:px-8 md:px-28 pb-10">
       {step < 3 && (
-        <div>
-          <div className=" flex items-center justify-between">
-            <div className=" flex justify-start items-center  gap-y-4">
-              <div className=" flex items-center text-start text-2xl font-bold gap-2 my-2 ">
-                <Link href={"/Dashboard"} className="  cursor-pointer">
-                  <ArrowLeft className="  text-[#9333EA] font-bold " />
-                </Link>
-                <h2>Create New Interview</h2>
-              </div>
-            </div>
+        <div className="mb-6">
+          {/* Header */}
+          <div className="flex items-center gap-2 mt-4 mb-6">
+            <Link href="/Dashboard" className="cursor-pointer">
+              <ArrowLeft className="text-purple-600 w-5 h-5" />
+            </Link>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Create New Interview</h2>
           </div>
 
-          <Progress value={50 * step} className="" />
+          {/* Step Indicator */}
+          <div className="flex items-center justify-center mb-5">
+            {STEPS.map((s, i) => (
+              <React.Fragment key={s.num}>
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
+                      ${step > s.num
+                        ? "bg-purple-600 text-white"
+                        : step === s.num
+                        ? "bg-purple-600 text-white ring-4 ring-purple-100"
+                        : "bg-gray-100 text-gray-400"
+                      }`}
+                  >
+                    {step > s.num ? <Check className="w-4 h-4" /> : s.num}
+                  </div>
+                  <span
+                    className={`text-xs mt-1.5 font-medium whitespace-nowrap transition-colors ${
+                      step === s.num ? "text-purple-600" : "text-gray-400"
+                    }`}
+                  >
+                    {s.label}
+                  </span>
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div
+                    className={`h-0.5 w-20 mb-5 mx-2 rounded-full transition-all duration-300 ${
+                      step > s.num ? "bg-purple-600" : "bg-gray-200"
+                    }`}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+
+          <Progress value={(step / 3) * 100} className="h-1.5 rounded-full" />
         </div>
       )}
-      {step == 1 && (
-        <FormContainer handlechange={handleformdata} GoToNext={GoToNext} />
-      )}
+
+      {step == 1 && <FormContainer handlechange={handleformdata} GoToNext={GoToNext} />}
       {step == 2 && (
         <Generatequestion
           questiondata={questions}
           loading={loading}
           finish={handlefinish}
           saveLoading={saveLoading}
+          onRetry={Generatequestions}
         />
       )}
       {step == 3 && (

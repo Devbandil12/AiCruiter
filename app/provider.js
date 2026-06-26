@@ -7,6 +7,7 @@ import { usersTable } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import { useUser } from '@clerk/nextjs'
 import { Interviewdataprovider } from '@/context/InterviewDataContet'
+import { ThemeProvider } from '@/context/ThemeContext'
 
 function Provider({children}) {
   
@@ -26,18 +27,14 @@ function Provider({children}) {
     user&&createnewuser()
   },[user])
   return (
-
-    <div >
-
-
-      <Header/>
-      <Interviewdataprovider>
-
-      
-      {children}
-      </Interviewdataprovider>
-  
+    <ThemeProvider>
+      <div>
+        <Header/>
+        <Interviewdataprovider>
+          {children}
+        </Interviewdataprovider>
       </div>
+    </ThemeProvider>
   )
 }
 

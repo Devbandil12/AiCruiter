@@ -1,11 +1,11 @@
 "use client"
 
-import { motion, Variants } from "framer-motion"
+import { motion } from "framer-motion"
 
 function LoadingThreeDotsJumping() {
     const dotVariants = {
         jump: {
-            y: -30,
+            y: -28,
             transition: {
                 duration: 0.8,
                 repeat: Infinity,
@@ -19,35 +19,32 @@ function LoadingThreeDotsJumping() {
         <motion.div
             animate="jump"
             transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
-            className="container"
+            className="aicruiter-loader"
         >
-            <motion.div className="dot" variants={dotVariants} />
-            <motion.div className="dot" variants={dotVariants} />
-            <motion.div className="dot" variants={dotVariants} />
+            <motion.div className="aicruiter-dot" variants={dotVariants} />
+            <motion.div className="aicruiter-dot" variants={dotVariants} />
+            <motion.div className="aicruiter-dot" variants={dotVariants} />
             <StyleSheet />
         </motion.div>
     )
 }
 
-/**
- * ==============   Styles   ================
- */
 function StyleSheet() {
     return (
         <style>
             {`
-            .container {
+            .aicruiter-loader {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 gap: 10px;
             }
 
-            .dot {
-                width: 20px;
-                height: 20px;
+            .aicruiter-dot {
+                width: 14px;
+                height: 14px;
                 border-radius: 50%;
-                background-color: #ff0088;
+                background-color: #9333ea;
                 will-change: transform;
             }
             `}

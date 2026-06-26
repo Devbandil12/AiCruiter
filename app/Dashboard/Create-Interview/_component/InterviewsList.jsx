@@ -68,19 +68,19 @@ function InterviewsList({ interview, SetInterviews }) {
 
   // --- Empty State Component ---
   const EmptyState = () => (
-    <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col items-center justify-center text-center p-10 border-2 border-dashed border-gray-300 rounded-2xl mt-5">
-      <PlusCircle className="h-12 w-12 text-gray-400 mb-4" />
-      <h3 className="text-xl font-semibold text-gray-800">
+    <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col items-center justify-center text-center p-10 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-2xl mt-5">
+      <PlusCircle className="h-12 w-12 text-gray-400 dark:text-gray-600 mb-4" />
+      <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
         No Interviews Created Yet
       </h3>
-      <p className="text-gray-500 mt-1">
+      <p className="text-gray-500 dark:text-gray-400 mt-1">
         Click the Create Interview button to get started.
       </p>
     </div>
   );
 
   return (
-    <div className="p-5">
+    <div className="pt-3">
       {interview?.length === 0 ? (
         <EmptyState />
       ) : (
@@ -140,7 +140,7 @@ function InterviewCard({ interviewData, SetInterviews }) {
       animate="visible"
       exit={{ opacity: 0, scale: 0.9 }}
       layout
-      className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col"
+      className="bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl dark:shadow-purple-900/20 transition-all duration-300 flex flex-col border border-transparent dark:border-white/10"
     >
       <div className="p-5 flex-grow">
         {/* Header */}
@@ -163,19 +163,19 @@ function InterviewCard({ interviewData, SetInterviews }) {
         {/* Job Role & Details */}
         <div className="mt-4">
           <h2
-            className="text-xl font-bold text-gray-800 truncate"
+            className="text-xl font-bold text-gray-800 dark:text-white truncate"
             title={interviewData?.jobRole}
           >
             {interviewData?.jobRole}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             {interviewData?.jobduration} Minute Interview
           </p>
         </div>
       </div>
 
       {/* Footer with actions */}
-      <div className="border-t border-gray-100 p-4 bg-gray-50 rounded-b-2xl">
+      <div className="border-t border-gray-100 dark:border-white/10 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-b-2xl">
         {isCompleted ? (
           <Button
             onClick={() => deleteInterview(interviewData?.id)}

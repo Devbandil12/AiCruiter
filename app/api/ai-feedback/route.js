@@ -12,15 +12,11 @@ export async function POST(req) {
     const feedbackprompt=FEEDBACK_PROMPT.replace("{{conversation}}",JSON.stringify(convo))
 
      const res = await feedback_ai.models.generateContent({
-          config: {
-            responseMimeType: "text/plain",
-          },
-    
-          model: "gemini-2.0-flash-thinking-exp-01-21",
+          model: "gemini-2.5-flash",
           contents: [
             {
               role: "user",
-              text: feedbackprompt,
+              parts: [{ text: feedbackprompt }],
             },
           ],
         });
