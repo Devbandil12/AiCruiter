@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 function FeatureCard({ item, index }) {
   const isDisabled = item?.name?.trim() === "Daily Routine";
@@ -16,9 +17,11 @@ function FeatureCard({ item, index }) {
       viewport={{ once: true, amount: 0.2 }}
     >
       <div className="group font-bold overflow-hidden relative rounded-2xl border shadow-md h-[22rem] sm:h-[26rem] md:h-[30rem]">
-        <img
+        <Image
           src={item?.image}
-          className="absolute group-hover:scale-105 transition-all duration-300 -z-40 rounded-2xl w-full h-full object-cover object-center"
+          alt={item?.name || "Feature"}
+          fill
+          className="group-hover:scale-105 transition-all duration-300 -z-40 rounded-2xl object-cover object-center"
         />
         <div className="absolute w-full rounded-2xl -z-30 h-full bg-gradient-to-t from-black/85 via-black/50 to-black/10" />
 

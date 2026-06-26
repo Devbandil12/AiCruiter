@@ -26,7 +26,7 @@ function FormContainer({ handlechange, GoToNext }) {
     if (inertviewtypelist) {
       handlechange("inertviewtype", inertviewtypelist);
     }
-  }, [inertviewtypelist]);
+  }, [inertviewtypelist, handlechange]);
 
   const toggleType = (name) => {
     setInertviewtypelist((pre) =>

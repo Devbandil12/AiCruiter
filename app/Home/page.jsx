@@ -6,6 +6,7 @@ import MindSetProgram from "./_component/MindSetProgram";
 import Feature from "./_component/Feature";
 import Footer from "../_components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 
 function page() {
   return (
@@ -15,9 +16,11 @@ function page() {
         {/* Mobile image */}
         <div className="block md:hidden">
           <div className="flex items-center justify-center pt-4">
-            <img
+            <Image
               src="/solo.png"
               alt="AI Interview"
+              width={500}
+              height={288}
               className="h-72 w-full object-contain"
             />
           </div>
@@ -82,10 +85,12 @@ function page() {
 
         {/* Right: Image */}
         <div className="hidden md:flex items-center justify-center">
-          <img
+          <Image
             src="/solo.png"
             alt="AI Interview"
-            className="mainprofile h-[40rem]"
+            width={640}
+            height={640}
+            className="mainprofile h-[40rem] w-auto"
           />
         </div>
       </div>

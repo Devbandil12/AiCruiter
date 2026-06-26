@@ -17,14 +17,13 @@ function Page() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const updateThestatus = async () => {
-    await db
-      .update(interviewDetailsTable)
-      .set({ completed: "true" })
-      .where(eq(interviewDetailsTable.id, interviewID));
-  };
-
   useEffect(() => {
+    const updateThestatus = async () => {
+      await db
+        .update(interviewDetailsTable)
+        .set({ completed: "true" })
+        .where(eq(interviewDetailsTable.id, interviewID));
+    };
     updateThestatus();
   }, [interviewID]);
 

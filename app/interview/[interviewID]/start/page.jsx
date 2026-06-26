@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { interviewcontext } from "@/context/InterviewDataContet";
 import { useUser } from "@clerk/nextjs";
 import Vapi from "@vapi-ai/web";
@@ -46,6 +47,7 @@ function InterviewPage() {
       toast.message("Call ended.");
       generateFeedback(newar);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setInDB = async (feedbackData) => {
@@ -180,10 +182,12 @@ Wrap up after 5-7 questions with a summary and motivation.
                   />
                 </>
               )}
-              <img
+              <Image
                 src="/aigirl.webp"
                 alt="AI"
-                className="w-20 h-20 rounded-full object-cover border-2 border-primary relative z-10"
+                width={80}
+                height={80}
+                className="rounded-full object-cover border-2 border-primary relative z-10"
               />
             </div>
             <div className="text-center">

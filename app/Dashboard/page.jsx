@@ -15,19 +15,17 @@ function Page() {
   const { interviews, SetInterviews } = useContext(interviewcontext);
   const { user } = useUser();
 
-  const getinterviews = async () => {
-    setLoading(true);
-    const res = await axios.get(
-      "/api/interviews?email=" + user?.primaryEmailAddress.emailAddress
-    );
-    SetInterviews(res.data);
-    setLoading(false);
-  };
-
   useEffect(() => {
-    if (user) {
-      getinterviews();
-    }
+    if (!user) return;
+    const getinterviews = async () => {
+      setLoading(true);
+      const res = await axios.get(
+        "/api/interviews?email=" + user?.primaryEmailAddress.emailAddress
+      );
+      SetInterviews(res.data);
+      setLoading(false);
+    };
+    getinterviews();
   }, [user]);
   return (
     <div className="min-h-screen dark:bg-gray-950">

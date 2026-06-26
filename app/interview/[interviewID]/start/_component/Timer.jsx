@@ -21,6 +21,7 @@ export default function Timer({ limit = 5, setIsRunning, isRunning, compact = fa
       }, 1000);
     }
     return () => clearInterval(intervalRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRunning]);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function Timer({ limit = 5, setIsRunning, isRunning, compact = fa
       clearInterval(intervalRef.current);
       setIsRunning(false);
     }
-  }, [secondsLeft]);
+  }, [secondsLeft, setIsRunning]);
 
   if (compact) {
     return (

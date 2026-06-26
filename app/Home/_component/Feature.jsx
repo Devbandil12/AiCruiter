@@ -13,7 +13,7 @@ function Feature() {
         Everything You Need to Ace Your Interview
       </h2>
       <p className="text-center text-gray-500 dark:text-gray-400 max-w-xl">
-        From AI-powered mock interviews to resume optimization — we've got every
+        From AI-powered mock interviews to resume optimization — we&apos;ve got every
         step of your job hunt covered.
       </p>
       <div className="gap-5 mt-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

@@ -3,6 +3,7 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 
 import { ChevronDown, LogOut, ScanLine, Stars } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -70,10 +71,11 @@ function Header() {
         <div onClick={() => setModal((pre) => !pre)} className="cursor-pointer">
           <div className="md:hover:bg-gray-50 dark:md:hover:bg-gray-800 gap-1 flex items-center justify-center rounded-3xl p-2">
             <div className="relative mx-2 group w-8 h-8 rounded-full overflow-hidden shadow-lg ring-1 ring-primary ring-opacity-40 transition-all duration-300 ease-in-out hover:scale-105 hover:ring-indigo-400 hover:ring-opacity-100">
-              <img
+              <Image
                 src={user?.imageUrl || "/profileleveling.jpg"}
                 alt="Power Profile"
-                className="w-full h-full object-cover object-top brightness-110 transition-all duration-300 group-hover:brightness-125"
+                fill
+                className="object-cover object-top brightness-110 transition-all duration-300 group-hover:brightness-125"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/40 transition-all duration-300" />
             </div>

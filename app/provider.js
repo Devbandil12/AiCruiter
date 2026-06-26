@@ -13,18 +13,18 @@ function Provider({children}) {
   
   const {user}= useUser()
   // console.log(user.fullName)
-  const createnewuser=async()=>{
-   
-   const userdata= await db.select().from(usersTable).where(eq(usersTable.email,user?.primaryEmailAddress.emailAddress))
-   if(userdata.length==0){
-    await db.insert(usersTable).values({
-      name:user?.fullName,
-      email:user?.primaryEmailAddress.emailAddress
-    })
-   }
-  }
   useEffect(()=>{
-    user&&createnewuser()
+    if(!user) return
+    const createnewuser=async()=>{
+      const userdata= await db.select().from(usersTable).where(eq(usersTable.email,user?.primaryEmailAddress.emailAddress))
+      if(userdata.length==0){
+        await db.insert(usersTable).values({
+          name:user?.fullName,
+          email:user?.primaryEmailAddress.emailAddress
+        })
+      }
+    }
+    createnewuser()
   },[user])
   return (
     <ThemeProvider>

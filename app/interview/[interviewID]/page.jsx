@@ -31,7 +31,7 @@ function Page() {
 
   useEffect(() => {
     fetchdata(interviewID).finally(() => setFetchLoading(false));
-  }, [interviewID]);
+  }, [interviewID, fetchdata]);
 
   const toggleCheck = (i) => {
     setChecks((prev) => prev.map((c, idx) => (idx === i ? !c : c)));

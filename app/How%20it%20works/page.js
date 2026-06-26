@@ -79,7 +79,7 @@ function HowItWorksPage() {
             </span>
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400">
-            We have engineered a simple, powerful path to transform you from a nervous candidate into a confident professional. Here's how.
+            We have engineered a simple, powerful path to transform you from a nervous candidate into a confident professional. Here&apos;s how.
           </p>
         </motion.div>
 
